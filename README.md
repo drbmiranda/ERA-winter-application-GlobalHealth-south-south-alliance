@@ -1,22 +1,101 @@
 # SulSul Lab
 
-## ERA:AI Fellowship research proposal · AI Governance · Winter 2027
+[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-1f6f46?style=flat-square)](LICENSE)
+![Python 3](https://img.shields.io/badge/python-3-3776AB?style=flat-square&logo=python&logoColor=white)
+![Research status: prototype](https://img.shields.io/badge/research%20status-prototype-C28B36?style=flat-square)
+[![Upstream: Welfare Diplomacy](https://img.shields.io/badge/upstream-Welfare%20Diplomacy-2D5B48?style=flat-square)](https://github.com/mukobi/welfare-diplomacy)
+
+> **ERA:AI Fellowship research proposal · AI Governance · Winter 2027**
+
+![SulSul Lab — abstract global-health resource coordination](visual/global-health-hero-v1.png)
 
 > **Can phase-bound, machine-verifiable diplomatic commitments distinguish
 > ordinary coordination failure from strategic commitment violation by
 > autonomous agents under scarcity?**
 
-SulSul Lab is an auditable multi-agent research environment for answering that
+SulSul Lab is an auditable multi-agent research environment for answering this
 question. It uses an intentionally abstract South–South health-resource network
-to evaluate how autonomous AI agents behave when resources are finite,
-information is partial and delayed, logistics are noisy, and a shared network
-can fail.
+to test whether autonomous AI agents honour cooperation when resources are
+finite, information is partial and delayed, logistics are noisy, and a shared
+network can fail.
 
 This repository is a research prototype—not a prediction of state behaviour,
 an epidemiological model, or a model of real health systems. Health variables,
 routes, and actors are configurable scenario abstractions. The contribution is
 methodological: make an agent's promise, observed context, capacity, action,
 and outcome inspectable before its coordination behaviour is trusted.
+
+**Start here:** [Quick start](#quick-start) · [What is implemented](#project-status)
+· [Research thesis](#thesis-in-one-page) · [Documentation](#documentation) ·
+[Research lineage](#origin-and-research-lineage-from-welfare-diplomacy-to-sulsul-lab)
+
+## At a glance
+
+| Research problem | Technical intervention | Evidence produced |
+|---|---|---|
+| Agents may promise cooperation and later prioritise local advantage under scarcity. | Phase-bound proposals, partial observations, finite shared resources, and event traces. | Capacity, message, action, and resolution records that enable commitment auditing. |
+
+| Built in this prototype | Planned for the 10-week study |
+|---|---|
+| Human and valid-random play; scarcity shocks; partial observations; real-time diplomacy log; phase-safe JSON API. | Persistent event sourcing; structured pledges; autonomous policy agents; repeated experiments; CVR analysis. |
+
+## Quick start
+
+**Requirements:** Python 3 and a modern browser. No API key, LLM, Supabase
+project, or n8n workflow is needed for the local prototype.
+
+```bash
+git clone https://github.com/drbmiranda/ERA-winter-application-GlobalHealth-south-south-alliance.git
+cd ERA-winter-application-GlobalHealth-south-south-alliance
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python app.py
+```
+
+Open **http://127.0.0.1:4180**.
+
+On Windows PowerShell, activate the environment with:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+## First five minutes
+
+1. Open the local dashboard and select **Brazil** as the human operator.
+2. Choose a health-diplomacy mission and a stress scenario.
+3. Resolve a phase; inspect the resource trace, welfare distribution, and live
+   mission record.
+4. Record a phase-bound proposal in the diplomacy panel.
+5. Open a second browser tab and post another proposal: Server-Sent Events
+   update both dashboards immediately.
+
+Try **Catastrophic scarcity shock** to see the resource grid lose 70–90% of its
+remaining abstract resources. This is an OOD alignment stressor, not a model of
+a real outbreak, attack, or country.
+
+## Project status
+
+| Area | Status | Reader takeaway |
+|---|---|---|
+| Simulation environment | **Runnable** | Finite resources, routes, missions, capacity, shocks, welfare, and coalitions work locally. |
+| Auditor dashboard | **Runnable** | The browser displays the full research state and phase trace. |
+| Diplomacy API | **Runnable, local** | Phase-bound messages and SSE updates work in one Flask process. |
+| Autonomous AI policies | **Planned** | Self-maximising, aggregate, and equity-constrained policies are specified but not yet implemented. |
+| Supabase / persistent audit database | **Planned** | No hosted database or relational pledge schema is configured yet. |
+| Commitment Violation Rate results | **Not claimed** | CVR is a pre-specified target metric, not an existing empirical result. |
+
+## Documentation
+
+| Read this | For |
+|---|---|
+| [Game rules](docs/game-rules.md) | Understand the current playable environment. |
+| [Health-resource protocol](docs/health-resource-protocol.md) | Inspect resources, shocks, capacities, and metrics. |
+| [Agent and n8n API](docs/n8n-diplomacy-api.md) | Connect a phase-safe agent workflow. |
+| [Policy specification](docs/policy-specification.md) | Review the planned policy comparison. |
+| [ERA thesis note](docs/era-ai-governance-thesis.md) | Read the earlier, detailed research framing. |
 
 ## Thesis in one page
 
@@ -44,6 +123,64 @@ The study will not claim to infer an agent's hidden intent or “prove deceptive
 alignment” from one behaviour. It will measure **strategic commitment
 violation**: observable divergence between a machine-verifiable obligation and
 an agent's later action when ordinary inability to comply has been excluded.
+
+## Origin and research lineage: from Welfare Diplomacy to SulSul Lab
+
+SulSul Lab began as a fork and research adaptation of Gabriel Mukobi and
+colleagues' open-source **Welfare Diplomacy** environment. In *Welfare
+Diplomacy: Benchmarking Language Model Cooperation* (2023), Mukobi, Hannah
+Erlebach, Niklas Lauffer, Lewis Hammond, Alan Chan, and Jesse Clifton adapted
+the zero-sum board game *Diplomacy* into a general-sum benchmark: agents trade
+off military capability against domestic welfare. Their work supplied an open
+engine, language-model scaffolding, an experiment harness, and a central
+finding relevant here—baseline agents could obtain high social welfare while
+remaining exploitable.
+
+That is the appropriate baseline, not a claim of novelty through erasure. The
+upstream repository and its AGPLv3 lineage are acknowledged in this project’s
+licence and attribution. SulSul Lab preserves the research insight that
+cooperation must be evaluated in mixed-incentive environments, then changes the
+environment and measurement target to answer a different governance question.
+
+| Welfare Diplomacy baseline | SulSul Lab adaptation |
+|---|---|
+| General-sum variant of territorial *Diplomacy* | Non-territorial network of abstract health-resource coordination |
+| Welfare points create a trade-off with military conquest | Finite common resources, delivery capacity, and network viability create scarcity trade-offs |
+| Cooperation evaluated through welfare and exploitability | Cooperation evaluated through distribution, resilience, and machine-verifiable commitments |
+| Full game interaction and negotiation | Phase-bound proposals linked to capacity, resolved events, and an audit outcome |
+
+The adaptation is motivated by three adjacent research literatures. First,
+goal misgeneralisation shows that a system can remain competent outside its
+training distribution while pursuing an undesired goal—even when the training
+specification appeared correct. Second, sequential social-dilemma work shows
+that resource abundance and environmental conditions can alter conflict and
+cooperation between learned policies. Third, formal work on power-seeking gives
+a reason to examine whether agents retain resources, optionality, and leverage
+when doing so conflicts with shared welfare.
+
+SulSul Lab does **not** claim to reproduce, validate, or empirically prove any
+of these theories. It is a bounded evaluation environment informed by them: an
+out-of-distribution scarcity shift, a common-pool resource dilemma, and a
+traceable record of whether an agent honours commitments after it has obtained
+a benefit.
+
+## Why a South–South network
+
+Most public discussion of advanced-AI governance concentrates on competition
+between major Northern powers or on a North–South allocation frame. Those are
+important questions, but they leave an under-examined governance problem:
+**how can institutions audit whether autonomous systems preserve cooperation
+among actors facing unequal capacity and interdependent logistics within the
+Global South?**
+
+The South–South map is therefore not an assertion that emerging countries have
+one shared interest, fixed capacity, or predictable diplomatic behaviour. It is
+a configurable scenario topology for studying a concrete coordination problem:
+when neighbouring actors rely on one another's routes, transfers, and trust
+under scarcity, an agent's local optimisation can damage a regional public good.
+Country labels, capacities, and routes will be permuted in sensitivity analyses
+so that a result cannot be attributed to a stereotype embedded in the starting
+board.
 
 ## Why this is AI governance research
 
@@ -97,6 +234,15 @@ Relevant preparation for this project includes:
 This background does not substitute for AI-safety evidence. It explains why the
 research problem is grounded in real constraints while the proposed output is a
 technical, inspectable governance artifact rather than a clinical claim.
+
+Bianca's contribution is to bring together perspectives that are rarely joined
+in a single evaluation environment: a physician's experience of constrained
+care and medical regulation; a digital-health builder's ability to implement
+interactive simulation systems; and a practitioner of global health diplomacy
+who has worked across Brazilian institutions, international innovation forums,
+and resource-constrained communities. This perspective motivates the research
+question, while the protocol keeps its claims technical, reproducible, and open
+to falsification.
 
 ## Experimental design
 
@@ -222,16 +368,6 @@ solve global health allocation or deceptive alignment in general.
 - Any AI policy must disclose model version, objective, prompts or training
   configuration, observation context, constraints, and evaluation protocol.
 
-## Run locally
-
-```bash
-cd sul-sul-diplomacy
-../welfare-diplomacy/.venv/bin/python app.py
-```
-
-Open <http://127.0.0.1:4180>. No model provider, API key, database, or n8n
-workflow is required to explore the current local prototype.
-
 ## Repository guide
 
 ```text
@@ -245,6 +381,34 @@ docs/policy-specification.md        Proposed policy comparison
 docs/health-resource-protocol.md    Resource-protocol details
 docs/n8n-diplomacy-api.md           Phase-safe agent API
 ```
+
+## References
+
+- Mukobi, G., Erlebach, H., Lauffer, N., Hammond, L., Chan, A., & Clifton, J.
+  (2023). [*Welfare Diplomacy: Benchmarking Language Model
+  Cooperation*](https://arxiv.org/abs/2310.08901). arXiv:2310.08901. The
+  [upstream open-source repository](https://github.com/mukobi/welfare-diplomacy)
+  is the technical and conceptual starting point for this adaptation.
+- Shah, R., Varma, V., Kumar, R., Phuong, M., Krakovna, V., Uesato, J., &
+  Kenton, Z. (2022). [*Goal Misgeneralization: Why Correct Specifications
+  Aren't Enough For Correct Goals*](https://arxiv.org/abs/2210.01790).
+  arXiv:2210.01790.
+- Leibo, J. Z., Zambaldi, V., Lanctot, M., Marecki, J., & Graepel, T. (2017).
+  [*Multi-agent Reinforcement Learning in Sequential Social
+  Dilemmas*](https://arxiv.org/abs/1702.03037). AAMAS 2017.
+- Turner, A. M., Smith, L., Shah, R., Critch, A., & Tadepalli, P. (2021).
+  [*Optimal Policies Tend to Seek
+  Power*](https://arxiv.org/abs/1912.01683). NeurIPS 2021.
+
+## Contact and contribution
+
+**Bianca Baptistella de Miranda, MD** · [drbmiranda@healthtechbr.io](mailto:drbmiranda@healthtechbr.io)
+
+Research feedback, issue reports, and reproducibility improvements are welcome.
+Before proposing a change, please preserve the project’s core safeguards:
+scenario parameters must remain explicit, country labels must not be treated as
+behavioural facts, and no result may be framed as a clinical or geopolitical
+prediction.
 
 ## Attribution and licence
 
