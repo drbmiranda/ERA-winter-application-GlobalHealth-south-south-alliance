@@ -39,6 +39,10 @@ and outcome inspectable before its coordination behaviour is trusted.
 |---|---|
 | Human and valid-random play; scarcity shocks; partial observations; real-time diplomacy log; phase-safe JSON API. | Persistent event sourcing; structured pledges; autonomous policy agents; repeated experiments; CVR analysis. |
 
+**Proposed fellowship output:** an auditable risk-detection framework for
+AI-mediated coordination in crisis conditions. The simulation is the evidence
+generator; the framework is the governance artifact.
+
 ## Quick start
 
 **Requirements:** Python 3 and a modern browser. No API key, LLM, Supabase
@@ -197,6 +201,10 @@ questions that arise with autonomous agents:
   coordination attempt from an agent that benefited from a commitment and then
   declined to honour it?
 
+The intended result is not merely a benchmark score. It is a practical
+monitoring framework that lets an institution identify, verify, classify, and
+escalate risk in an AI-mediated coordination process.
+
 The Global South health-resource setting is a source of epistemic value, not a
 claim about particular countries. It foregrounds unequal capacity, constrained
 logistics, and the consequences of allocation rules—conditions often hidden by
@@ -311,6 +319,25 @@ resource concentration, logistical exclusion, network viability, coalition
 resilience, and commitment adherence. The analysis will compare distributions
 over matched repeated seeds, with uncertainty and negative results reported.
 
+### From evidence to a TechGov risk-detection framework
+
+The 10-week project will translate observed behaviour into an auditable
+governance workflow:
+
+```text
+Observe → Verify → Classify → Escalate
+```
+
+| Layer | Question | Example output |
+|---|---|---|
+| **Observe** | What did the agent say, see, hold, and do? | Phase-bound messages, state snapshots, orders, and resolved events |
+| **Verify** | Could the agent actually comply? | Capacity and route check; condition and shock assessment |
+| **Classify** | What kind of risk occurred? | Ordinary logistics failure, distributive exclusion, hoarding, or strategic commitment violation |
+| **Escalate** | What should an institution do next? | Human review, evidence request, action block, or objective/constraint revision |
+
+This framework is designed to make risk claims inspectable rather than relying
+on self-report, a model's prose rationale, or a single aggregate welfare score.
+
 ## What has been built
 
 - A runnable Flask simulation with non-territorial health-diplomacy missions.
@@ -339,20 +366,21 @@ over matched repeated seeds, with uncertainty and negative results reported.
 - The human dashboard has full audit visibility. Agent context is partial by
   design; this asymmetry must remain explicit in every study report.
 
-## Ten-week execution plan
+## Ten-week execution plan · AI Governance / TechGov
 
-| Weeks | Deliverable | Evidence of completion |
+| Weeks | Workstream | Evidence of completion |
 |---|---|---|
-| 1–2 | Pre-register hypotheses, scenarios, policy definitions, CVR eligibility rules, and analysis plan | Versioned specification and test cases |
-| 3–4 | Add persistent event sourcing: study runs, pledges, agent-state snapshots, orders, resolved events, and audit records | Migration files, schema diagram, replayable run |
-| 5–6 | Implement self-maximiser, aggregate-welfare, and equity-constrained policies under identical observations | Policy tests and disclosed configuration |
-| 7 | Connect controlled agent orchestration; retain prompt/model/version and phase-bound context | Reproducible agent traces |
-| 8–9 | Run matched multi-seed experiments, topology permutations, and sensitivity analysis | Exported dataset, uncertainty estimates, negative findings |
-| 10 | Publish a research report, evaluation protocol, code, limitations, and governance recommendations | Open report and reproducibility package |
+| 1–2 | Pre-register the threat model, hypotheses, policy definitions, CVR eligibility rules, and analysis plan. | Versioned specification, risk taxonomy, and test cases. |
+| 3–4 | Add persistent event sourcing: study runs, structured pledges, agent-state snapshots, orders, resolved events, and audit records. | Migration files, schema diagram, and one replayable run. |
+| 5–6 | Implement self-maximising, aggregate-welfare, and equity-constrained policies under identical observations; execute initial scarcity and shock tests. | Policy tests, disclosed configurations, and matched initial traces. |
+| 7 | Analyse first results for commitment violation, resource hoarding, distributional exclusion, and ordinary coordination failure. | Preliminary findings, negative results, and a calibrated risk taxonomy. |
+| 8–9 | Build and validate the **Observe → Verify → Classify → Escalate** framework against held-out scenarios, repeated seeds, and topology permutations. | Thresholds, audit rules, escalation guidance, exported data, and uncertainty estimates. |
+| 10 | Publish the evaluation protocol, framework, reproducibility package, limitations, and governance recommendations. | Open research report and reusable technical artifact. |
 
-The bounded deliverable is an **auditable evaluation protocol for strategic
-commitment violation in multi-agent systems under scarcity**, not a claim to
-solve global health allocation or deceptive alignment in general.
+The bounded deliverable is an **auditable risk-detection framework for
+AI-mediated coordination under crisis scarcity**. It does not claim to solve
+global-health allocation or establish an agent's hidden intent; it provides a
+technical basis for detecting and governing observable strategic risk.
 
 ## Research safeguards
 
